@@ -2,12 +2,14 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
-#reroll {
+.reroll {
     display: flex;
     height: 20px;
 }
 #notation {
+    width: 20em !important;
     display: flex;
     align-items: center;
     justify-items: center;

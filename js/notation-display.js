@@ -5,13 +5,8 @@ window.onload = function(){
 let i = 0;
 let randomchars = [];
 
-function refresh(e) {
+function refresh() {
     VF = Vex.Flow;
-
-    if (randomchars[i - 1] == e ) {
-        console.log("correct")
-    
-    
     var svg = document.querySelector("svg");
     if (svg != null) {
         svg.parentNode.removeChild(svg);
@@ -21,8 +16,7 @@ function refresh(e) {
     randomchars.push(randomchar)
     var randomiser = [randomchar+ "/" + (Math.floor(Math.random() * 2) + 4).toString()];
 
-    
-
+    console.log(randomchars)
 
     var notes = [
         // A quarter-note C.
@@ -57,7 +51,12 @@ function refresh(e) {
     
     // Render voice
     voice.draw(context, stave);
+}
 
-    i++
+function refreshlock(e) {
+    if (randomchars[i] == e ) {
+        console.log("correct")
+        refresh();
     }
+    i++
 }
