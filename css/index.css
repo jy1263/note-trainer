@@ -4,6 +4,11 @@
     justify-content: center;
     align-items: center;
 }
+#bottomalign{
+    background: black;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
 .reroll {
     display: flex;
     height: 20px;
@@ -18,4 +23,7 @@
 html {
     display: block;
     border: 0px;
+}
+body {
+    margin: 0px;
 }

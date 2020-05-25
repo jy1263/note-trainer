@@ -54,9 +54,10 @@ function refresh() {
 }
 
 function refreshlock(e) {
+    console.log(randomchars)
     if (randomchars[i] == e ) {
         console.log("correct")
         refresh();
+        i++
     }
-    i++
 }
