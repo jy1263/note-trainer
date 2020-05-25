@@ -28,6 +28,7 @@ body {
     margin: 0px;
 }
 button{
+    font-family: monospace;
     display:block;
     padding-left: 5%;
     padding-right: 5%;
