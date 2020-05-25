@@ -1,0 +1,19 @@
+.centeralign {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#reroll {
+    display: flex;
+    height: 20px;
+}
+#notation {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+}
+html {
+    display: block;
+    border: 0px;
+}

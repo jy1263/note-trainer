@@ -1,13 +1,22 @@
 <html>
-    <script src="js/vexflow-debug.js"></script>
-    <script src="js/notation-display.js"></script>
-    <header>
-        
-        
-    </header>
-      
-<canvas id="some-canvas-id">hi</canvas>
-<body></body>
+    <head>
+        <script src="js/lib/vexflow-debug.js"></script>
+        <script src="js/notation-display.js"></script>
+        <link href="css/index.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <div class="centeralign" style="height: 80%;">
+        <div id="notation"></div>
+    </div>
+    <div class="centeralign" style="height: 10%;">
+        <button id="reroll" onclick='refresh("C")'>C</button>
+        <button id="reroll" onclick='refresh("D")'>D</button>
+        <button id="reroll" onclick='refresh("E")'>E</button>
+        <button id="reroll" onclick='refresh("F")'>F</button>
+        <button id="reroll" onclick='refresh("G")'>G</button>
+        <button id="reroll" onclick='refresh("A")'>A</button>
+        <button id="reroll" onclick='refresh("B")'>B</button>
+    </div>
 
 <script>
 
