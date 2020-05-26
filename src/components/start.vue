@@ -20,7 +20,7 @@
   let VF = Vex.Flow;
 
   export default {
-    name: 'HelloWorld',
+    name: 'start',
 
     props: {
       msg: String

@@ -1,14 +1,14 @@
 <template>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <start msg="Welcome to Your Vue.js App"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import start from './components/start.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    start
   }
 }
 </script>
