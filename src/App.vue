@@ -26,7 +26,6 @@
     },
 
     props: {
-      msg: String
     },
 
     data: function () {

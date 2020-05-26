@@ -12,15 +12,12 @@
     name: 'NotationRenderer',
 
     props: {
-      msg: String
     },
 
     data: function () {
-
     },
 
     mounted () {
-
     },
 
     methods: {
