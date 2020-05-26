@@ -4,13 +4,13 @@
       <div id="notation"></div>
     </div>
     <div class="centeralign" style="height: 20%;" id="bottomalign">
-      <button class="reroll" onclick='refreshlock("C")'>C</button>
-      <button class="reroll" onclick='refreshlock("D")'>D</button>
-      <button class="reroll" onclick='refreshlock("E")'>E</button>
-      <button class="reroll" onclick='refreshlock("F")'>F</button>
-      <button class="reroll" onclick='refreshlock("G")'>G</button>
-      <button class="reroll" onclick='refreshlock("A")'>A</button>
-      <button class="reroll" onclick='refreshlock("B")'>B</button>
+      <button class="reroll" v-on:click='refreshlock("C")'>C</button>
+      <button class="reroll" v-on:click='refreshlock("D")'>D</button>
+      <button class="reroll" v-on:click='refreshlock("E")'>E</button>
+      <button class="reroll" v-on:click='refreshlock("F")'>F</button>
+      <button class="reroll" v-on:click='refreshlock("G")'>G</button>
+      <button class="reroll" v-on:click='refreshlock("A")'>A</button>
+      <button class="reroll" v-on:click='refreshlock("B")'>B</button>
     </div>
   </div>
 </template>
@@ -83,8 +83,18 @@
         
         // Render voice
         voice.draw(context, stave);
+      },
+
+      refreshlock: function(e) {
+          console.log(this.$data.randomchars)
+          if (this.$data.randomchars[this.$data.indexOfArray] == e ) {
+              console.log("correct")
+              this.refresh();
+              this.$data.indexOfArray++
+          }
       }
-    } 
+
+    }
   }
 </script>
 
