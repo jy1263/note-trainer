@@ -1,6 +1,8 @@
 <template>
   <div id="wrapper">
-    <NotationRenderer />
+    <div class="centeralign" style="height: 80%;">
+      <NotationRenderer v-if="showNotation" />
+    </div>
     <div class="centeralign" style="height: 20%;" id="bottomalign">
       <button class="reroll" v-on:click='refreshlock("C")'>C</button>
       <button class="reroll" v-on:click='refreshlock("D")'>D</button>
@@ -9,6 +11,8 @@
       <button class="reroll" v-on:click='refreshlock("G")'>G</button>
       <button class="reroll" v-on:click='refreshlock("A")'>A</button>
       <button class="reroll" v-on:click='refreshlock("B")'>B</button>
+      <br>
+       <input type="checkbox" v-model="showNotation">
     </div>
   </div>
 </template>
@@ -31,7 +35,8 @@
     data: function () {
       return {
         indexOfArray: 0,
-        randomchars: []
+        randomchars: [],
+        showNotation: true
       }
     },
 

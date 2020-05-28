@@ -1,7 +1,5 @@
 <template>
-    <div class="centeralign" style="height: 80%;">
-      <div id="notation"></div>
-    </div>
+    <div id="notation"></div>
 </template>
 
 <script>
