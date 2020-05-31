@@ -1,7 +1,7 @@
 <template>
   <div id="wrapper">
     <div class="centeralign" style="height: 80%;">
-      <NotationRenderer v-if="showNotation" />
+      <NotationRenderer v-show="showNotation" />
     </div>
     <div class="centeralign" style="height: 20%;" id="bottomalign">
       <button class="reroll" v-on:click='refreshlock("C")'>C</button>
