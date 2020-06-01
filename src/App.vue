@@ -18,6 +18,7 @@
 </template>
 
 <script>
+  import { Synth } from "tone";
   import NotationRenderer from './components/NotationRenderer.vue'
   import Vex from 'vexflow/src/index.js'
   let VF = Vex.Flow;
@@ -46,6 +47,8 @@
 
     methods: {
       refresh: function() {
+        const synth = new Synth().toMaster();
+        
         var svg = document.querySelector("svg");
         if (svg != null) {
             svg.parentNode.removeChild(svg);
@@ -53,13 +56,15 @@
 
         let randomchar = String.fromCharCode(65+Math.floor(Math.random() * 7)).toString()
         this.$data.randomchars.push(randomchar)
-        var randomiser = [randomchar+ "/" + (Math.floor(Math.random() * 2) + 4).toString()];
+        var randomoctave = (Math.floor(Math.random() * 2) + 4).toString()
+
+        synth.triggerAttackRelease(randomchar + randomoctave, "8n");
 
         console.log(this.$data.randomchars)
 
         var notes = [
             // A quarter-note C.
-            new VF.StaveNote({clef: "treble", keys: randomiser, duration: "q" }),
+            new VF.StaveNote({clef: "treble", keys: [randomchar + "/" + randomoctave], duration: "q" }),
         ];
 
         // Create an SVG renderer and attach it to the DIV element named "notation".

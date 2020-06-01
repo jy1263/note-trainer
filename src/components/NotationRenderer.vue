@@ -13,6 +13,9 @@
     },
 
     data: function () {
+        return {
+            
+        }
     },
 
     mounted () {
