@@ -13,6 +13,7 @@
       <button class="reroll" v-on:click='refreshlock("B")'>B</button>
       <br>
        <input type="checkbox" v-model="showNotation">
+       <input type="checkbox" v-model="playSynth">
     </div>
   </div>
 </template>
@@ -37,7 +38,8 @@
       return {
         indexOfArray: 0,
         randomchars: [],
-        showNotation: true
+        showNotation: true,
+        playSynth: true
       }
     },
 
@@ -53,13 +55,15 @@
         if (svg != null) {
             svg.parentNode.removeChild(svg);
         }
-
+        
         let randomchar = String.fromCharCode(65+Math.floor(Math.random() * 7)).toString()
         this.$data.randomchars.push(randomchar)
         var randomoctave = (Math.floor(Math.random() * 2) + 4).toString()
 
-        synth.triggerAttackRelease(randomchar + randomoctave, "8n");
-
+        if (this.$data.playSynth){
+          synth.triggerAttackRelease(randomchar + randomoctave, "8n");
+        }
+        
         console.log(this.$data.randomchars)
 
         var notes = [
@@ -104,8 +108,7 @@
               this.refresh();
               this.$data.indexOfArray++
           }
-      }
-
+      },
     }
   }
 </script>
