@@ -61,7 +61,7 @@
         var randomoctave = (Math.floor(Math.random() * 2) + 4).toString()
 
         if (this.$data.playSynth){
-          synth.triggerAttackRelease(randomchar + randomoctave, "8n");
+          synth.triggerAttackRelease(randomchar + randomoctave, "4n");
         }
         
         console.log(this.$data.randomchars)
