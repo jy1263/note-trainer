@@ -56,8 +56,6 @@
         this.$data.possibleNotes.push({noteLetter:"A", octave:element});
         this.$data.possibleNotes.push({noteLetter:"B", octave:element});
       });
-      
-      console.log(this.$data.possibleNotes)
     },
 
     methods: {
@@ -73,7 +71,8 @@
         this.$data.randomchars.push(randomchar)
         var randomoctave = (Math.floor(Math.random() * 2) + 4).toString()
 
-        let randomizer = this.$data.possibleNotes
+        let randomizer = this.$data.possibleNotes[Math.random() * this.$data.possibleNotes.length];
+        console.log(randomizer)
 
         if (this.$data.playSynth){
           synth.triggerAttackRelease(randomchar + randomoctave, "4n");
