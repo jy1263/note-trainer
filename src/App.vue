@@ -36,6 +36,7 @@
 
     data: function () {
       return {
+        possibleNotes: [],
         indexOfArray: 0,
         randomchars: [],
         showNotation: true,
@@ -45,6 +46,18 @@
 
     mounted () {
       this.refresh();
+
+      [3,4,5,6,7,8,9].forEach(element => {
+        this.$data.possibleNotes.push({noteLetter:"C", octave:element});
+        this.$data.possibleNotes.push({noteLetter:"D", octave:element});
+        this.$data.possibleNotes.push({noteLetter:"E", octave:element});
+        this.$data.possibleNotes.push({noteLetter:"F", octave:element});
+        this.$data.possibleNotes.push({noteLetter:"G", octave:element});
+        this.$data.possibleNotes.push({noteLetter:"A", octave:element});
+        this.$data.possibleNotes.push({noteLetter:"B", octave:element});
+      });
+      
+      console.log(this.$data.possibleNotes)
     },
 
     methods: {
@@ -59,6 +72,8 @@
         let randomchar = String.fromCharCode(65+Math.floor(Math.random() * 7)).toString()
         this.$data.randomchars.push(randomchar)
         var randomoctave = (Math.floor(Math.random() * 2) + 4).toString()
+
+        let randomizer = this.$data.possibleNotes
 
         if (this.$data.playSynth){
           synth.triggerAttackRelease(randomchar + randomoctave, "4n");
