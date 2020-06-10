@@ -56,7 +56,7 @@
     },
 
     mounted () {
-      [3,4,5,6].forEach(element => {
+      [1,2,3,4,5,6,7,8,9].forEach(element => {
         this.$data.possibleNotes.push({noteLetter:"C", octave:element});
         this.$data.possibleNotes.push({noteLetter:"D", octave:element});
         this.$data.possibleNotes.push({noteLetter:"E", octave:element});
@@ -137,9 +137,14 @@
           ... this.$data.enableTreble ? ["treble"] : [],
           ... this.$data.enableBass ? ["bass"] : [],
         ];
-        let randomclefIndex = chance.integer({min:0, max: randomclefs.length - 1})
+        let randomclef = randomclefs[chance.integer({min:0, max: randomclefs.length - 1})]
 
-        return { randomNoteIndex: chance.integer({min:3, max:this.$data.possibleNotes.length - 1}), randomclef: randomclefs[randomclefIndex]};
+        if (randomclef == "bass"){
+          let minfloor;
+          let maxceiling;
+        }
+
+        return { randomNoteIndex: chance.integer({min:3, max:this.$data.possibleNotes.length - 1}), randomclef: randomclef};
       }
     }
   }
@@ -181,16 +186,21 @@
         margin: 1%;
         justify-content: center;
         display: flex;
-        height: 20px;
+        height: 40px;
       }
 
       & button{
-        font-family: monospace;
-        display:block;
-        padding-left: 5%;
-        padding-right: 5%;
-        background-color: white; 
+        background:rgba(0, 0, 0, 0.5);
+        border-radius: 25px;
         border: none;
+        color: white;
+        padding-top: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
       }
     }
     & .options {

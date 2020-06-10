@@ -41,6 +41,18 @@
         align-items: center;
         justify-items: center;
         justify-content: center;
+        
+        & svg{
+            z-index: -100;
+            transform: scale(2, 2);
+            & rect {
+                transform: translateY(22%);
+            }
+            & path {
+                transform: translateY(22%);
+                stroke: black;
+            }
+        }
     }
 }
 body {
