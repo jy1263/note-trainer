@@ -78,48 +78,51 @@
             svg.parentNode.removeChild(svg);
         }
         
-        let randomObject = this.$data.possibleNotes[this.randomiser().randomNoteIndex]
-        let randomClef = this.randomiser().randomclef
-        this.$data.randomchars.push(randomObject.noteLetter);
+        this.randomiser().then((e) =>{
+          console.log(e)
+          let randomObject = this.$data.possibleNotes[e.randomNoteIndex]
+          let randomClef = e.randomclef
+          this.$data.randomchars.push(randomObject.noteLetter);
 
+          if (this.$data.playSynth){
+            synth.triggerAttackRelease(randomObject.noteLetter + randomObject.octave, "4n");
+          }
 
-        if (this.$data.playSynth){
-          synth.triggerAttackRelease(randomObject.noteLetter + randomObject.octave, "4n");
-        }
+          var notes = [
+              // A quarter-note.
+              new VF.StaveNote({clef: randomClef, keys: [randomObject.noteLetter + "/" + randomObject.octave], duration: "q" }),
+          ];
 
-        var notes = [
-            // A quarter-note.
-            new VF.StaveNote({clef: randomClef, keys: [randomObject.noteLetter + "/" + randomObject.octave], duration: "q" }),
-        ];
+          // Create an SVG renderer and attach it to the DIV element named "notation".
+          var div = document.getElementById("notation")
+          var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+          
+          // Size our SVG:
+          renderer.resize(notes.length*100+20, 300);
+          
+          // And get a drawing context:
+          var context = renderer.getContext();
 
-        // Create an SVG renderer and attach it to the DIV element named "notation".
-        var div = document.getElementById("notation")
-        var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
-        
-        // Size our SVG:
-        renderer.resize(notes.length*100+20, 300);
-        
-        // And get a drawing context:
-        var context = renderer.getContext();
+          // Create a stave at position 10, 40 of width 400 on the canvas.
+          var stave = new VF.Stave(10, 20, notes.length*100);
 
-        // Create a stave at position 10, 40 of width 400 on the canvas.
-        var stave = new VF.Stave(10, 20, notes.length*100);
+          // Add a clef and time signature.
+          stave.addClef(randomClef) //.addTimeSignature("3/4");
 
-        // Add a clef and time signature.
-        stave.addClef(randomClef) //.addTimeSignature("3/4");
+          // Connect it to the rendering context and draw!
+          stave.setContext(context).draw();
 
-        // Connect it to the rendering context and draw!
-        stave.setContext(context).draw();
+          // Create a voice in 4/4 and add the notes from above
+          var voice = new VF.Voice({num_beats: notes.length,  beat_value: 4});
+          voice.addTickables(notes);
+          
+          // Format and justify the notes to 400 pixels.
+          var formatter = new VF.Formatter().joinVoices([voice]).format([voice], notes.length*100);
+          
+          // Render voice
+          voice.draw(context, stave);
 
-        // Create a voice in 4/4 and add the notes from above
-        var voice = new VF.Voice({num_beats: notes.length,  beat_value: 4});
-        voice.addTickables(notes);
-        
-        // Format and justify the notes to 400 pixels.
-        var formatter = new VF.Formatter().joinVoices([voice]).format([voice], notes.length*100);
-        
-        // Render voice
-        voice.draw(context, stave);
+        });
       },
 
       refreshlock: function(e) {
@@ -131,15 +134,15 @@
           }
       },
 
-      randomiser: function(e) {
+      randomiser: async function(e) {
         var chance = new Chance();
-        let randomclefs = [];
+        let randomclefs = [
+          ... this.$data.enableTreble ? ["treble"] : [],
+          ... this.$data.enableBass ? ["bass"] : [],
+        ];
+        let randomclefIndex = await chance.integer({min:0, max: randomclefs.length - 1})
 
-        if (this.$data.enableTreble) {randomclefs.push("treble")};
-        if (this.$data.enableBass) {randomclefs.push("bass")};
-        let randomclef = randomclefs[chance.integer({min:0, max: randomclefs.length})];
-
-        return { randomNoteIndex: chance.integer({min:3, max:this.$data.possibleNotes.length}), randomclef: randomclef};
+        return { randomNoteIndex: await chance.integer({min:3, max:this.$data.possibleNotes.length}), randomclef: randomclefs[randomclefIndex]};
       }
     }
   }
