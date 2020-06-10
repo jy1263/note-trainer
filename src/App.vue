@@ -3,7 +3,8 @@
     <div class="centeralign" style="height: 80%;">
       <NotationRenderer v-show="showNotation" />
     </div>
-    <div style="height: 20%;" id="bottomalign">
+    <div class="centeralign" style="height: 20%;" id="bottomalign">
+      <div class="break" />
         <div class="button-grid">
           <button class="reroll" v-on:click='refreshlock("C")'>C</button>
           <button class="reroll" v-on:click='refreshlock("D")'>D</button>
@@ -13,7 +14,6 @@
           <button class="reroll" v-on:click='refreshlock("A")'>A</button>
           <button class="reroll" v-on:click='refreshlock("B")'>B</button>
         </div>
-        <br>
         <input type="checkbox" v-model="showNotation">
         <input type="checkbox" v-model="playSynth">
     </div>
@@ -133,53 +133,66 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style lang="less">
 #wrapper{
   height: 100%;
-}
-.centeralign {
+
+  & .centeralign {
+    flex-wrap: wrap;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-#bottomalign{
+  }
+
+  & #notation {
+      width: 20em !important;
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      justify-content: center;
+  }
+
+  & #bottomalign{
     background: black;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
+    
+      & .button-grid{
+        display: grid;
+        width: 100%;
+        grid-template-columns:  auto auto auto auto auto auto auto;
+
+        & .reroll {
+          margin: 1%;
+          justify-content: center;
+          display: flex;
+          height: 20px;
+        }
+
+        & button{
+          font-family: monospace;
+          display:block;
+          padding-left: 5%;
+          padding-right: 5%;
+          background-color: white; 
+          border: none;
+        }
+      }
+  }
 }
-.reroll {
-  justify-content: center;
-  display: flex;
-    height: 20px;
-}
-#notation {
-    width: 20em !important;
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    justify-content: center;
-}
+
 html {
-    display: block;
-    border: 0px;
-    height: 100%;
+  display: block;
+  border: 0px;
+  height: 100%;
 }
 body {
-    margin: 0px;
-    height: 100%;
+  margin: 0px;
+  height: 100%;
 }
-button{
-    font-family: monospace;
-    display:block;
-    padding-left: 5%;
-    padding-right: 5%;
-    background-color: white; 
-    border: none;
-}
-.button-grid{
-  display: grid;
-  width: 100%;
-  grid-template-columns:  auto auto auto auto auto auto auto;
+.break {
+  flex-basis: 100%;
+  height: 0;
 }
 </style>
