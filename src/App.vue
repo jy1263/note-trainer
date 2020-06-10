@@ -14,8 +14,10 @@
           <button class="reroll" v-on:click='refreshlock("A")'>A</button>
           <button class="reroll" v-on:click='refreshlock("B")'>B</button>
         </div>
-        <input type="checkbox" v-model="showNotation">
-        <input type="checkbox" v-model="playSynth">
+        <span class="options">
+          Enable Note Renderer:<input type="checkbox" v-model="showNotation">
+          Enable Synthesiser:<input type="checkbox" v-model="playSynth">
+        </span>
     </div>
   </div>
 </template>
@@ -158,27 +160,31 @@
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     
-      & .button-grid{
-        display: grid;
-        width: 100%;
-        grid-template-columns:  auto auto auto auto auto auto auto;
+    & .button-grid{
+      margin: 2px;
+      display: grid;
+      width: 100%;
+      grid-template-columns:  auto auto auto auto auto auto auto;
 
-        & .reroll {
-          margin: 1%;
-          justify-content: center;
-          display: flex;
-          height: 20px;
-        }
-
-        & button{
-          font-family: monospace;
-          display:block;
-          padding-left: 5%;
-          padding-right: 5%;
-          background-color: white; 
-          border: none;
-        }
+      & .reroll {
+        margin: 1%;
+        justify-content: center;
+        display: flex;
+        height: 20px;
       }
+
+      & button{
+        font-family: monospace;
+        display:block;
+        padding-left: 5%;
+        padding-right: 5%;
+        background-color: white; 
+        border: none;
+      }
+    }
+    & .options {
+      color: white;
+    }
   }
 }
 
