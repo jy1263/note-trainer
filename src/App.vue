@@ -78,8 +78,9 @@
             svg.parentNode.removeChild(svg);
         }
         
-        let randomObject = this.$data.possibleNotes[this.randomiser().randomNoteIndex]
-        let randomClef = this.randomiser().randomclef
+        this.randomiser().then((e) => {
+        let randomObject = this.$data.possibleNotes[e.randomNoteIndex]
+        let randomClef = e.randomclef
         this.$data.randomchars.push(randomObject.noteLetter);
 
         if (this.$data.playSynth){
@@ -119,7 +120,7 @@
         
         // Render voice
         voice.draw(context, stave);
-
+        })       
       },
 
       refreshlock: function(e) {
@@ -131,20 +132,32 @@
           }
       },
 
-      randomiser: function(e) {
+      randomiser: async function(e) {
         var chance = new Chance();
         let randomclefs = [
           ... this.$data.enableTreble ? ["treble"] : [],
           ... this.$data.enableBass ? ["bass"] : [],
         ];
+
         let randomclef = randomclefs[chance.integer({min:0, max: randomclefs.length - 1})]
 
-        if (randomclef == "bass"){
-          let minfloor;
-          let maxceiling;
-        }
+        let minfloor;
+        let maxceiling;
 
-        return { randomNoteIndex: chance.integer({min:3, max:this.$data.possibleNotes.length - 1}), randomclef: randomclef};
+
+        switch(randomclef) {
+          case "bass":
+            console.log("bass");
+            minfloor = 9;
+            maxceiling = 21;
+            break;
+          case "treble":
+            console.log("treble");
+            minfloor = 19;
+            maxceiling = 35;
+        } 
+
+        return { randomNoteIndex: chance.integer({min:minfloor, max:maxceiling}), randomclef: randomclef};
       }
     }
   }
@@ -210,7 +223,12 @@
 }
 
 html {
-  background: linear-gradient(to right, #ffafbd, #ffc3a0);
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  background-size: 400% 400%;
+  -webkit-animation: rainbowFrames 20s ease infinite;
+  -moz-animation: rainbowFrames 20s ease infinite;
+  animation: rainbowFrames 20s ease infinite;
+  /*background: linear-gradient(to right, #ffafbd, #ffc3a0);*/
   display: block;
   border: 0px;
   height: 100%;
@@ -222,5 +240,21 @@ body {
 .break {
   flex-basis: 100%;
   height: 0;
+}
+
+@-webkit-keyframes rainbowFrames {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes rainbowFrames {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes rainbowFrames {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
 </style>
