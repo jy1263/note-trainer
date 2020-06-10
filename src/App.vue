@@ -17,6 +17,8 @@
         <span class="options">
           Enable Note Renderer:<input type="checkbox" v-model="showNotation">
           Enable Synthesiser:<input type="checkbox" v-model="playSynth">
+          Enable Treble Clef:<input type="checkbox" v-model="enableTreble">
+          Enable Bass Clef:<input type="checkbox" v-model="enableBass">
         </span>
     </div>
   </div>
@@ -42,8 +44,12 @@
     data: function () {
       return {
         possibleNotes: [],
+
         indexOfArray: 0,
         randomchars: [],
+        
+        enableTreble: true,
+        enableBass: true,
         showNotation: true,
         playSynth: true
       }
@@ -64,7 +70,7 @@
     },
 
     methods: {
-      refresh: function() {
+      refresh: async function() {
         const synth = new Synth().toMaster();
         
         var svg = document.querySelector("svg");
@@ -72,19 +78,18 @@
             svg.parentNode.removeChild(svg);
         }
         
-        let randomObject = this.$data.possibleNotes[this.randomiser()];
+        let randomObject = this.$data.possibleNotes[this.randomiser().randomNoteIndex]
+        let randomClef = this.randomiser().randomclef
         this.$data.randomchars.push(randomObject.noteLetter);
 
 
         if (this.$data.playSynth){
           synth.triggerAttackRelease(randomObject.noteLetter + randomObject.octave, "4n");
         }
-        
-        console.log(this.$data.randomchars)
 
         var notes = [
-            // A quarter-note C.
-            new VF.StaveNote({clef: "treble", keys: [randomObject.noteLetter + "/" + randomObject.octave], duration: "q" }),
+            // A quarter-note.
+            new VF.StaveNote({clef: randomClef, keys: [randomObject.noteLetter + "/" + randomObject.octave], duration: "q" }),
         ];
 
         // Create an SVG renderer and attach it to the DIV element named "notation".
@@ -92,7 +97,7 @@
         var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
         
         // Size our SVG:
-        renderer.resize(notes.length*100+20, 200);
+        renderer.resize(notes.length*100+20, 300);
         
         // And get a drawing context:
         var context = renderer.getContext();
@@ -101,7 +106,7 @@
         var stave = new VF.Stave(10, 20, notes.length*100);
 
         // Add a clef and time signature.
-        stave.addClef("treble") //.addTimeSignature("3/4");
+        stave.addClef(randomClef) //.addTimeSignature("3/4");
 
         // Connect it to the rendering context and draw!
         stave.setContext(context).draw();
@@ -128,7 +133,13 @@
 
       randomiser: function(e) {
         var chance = new Chance();
-        return chance.integer({min:3, max:this.$data.possibleNotes.length});
+        let randomclefs = [];
+
+        if (this.$data.enableTreble) {randomclefs.push("treble")};
+        if (this.$data.enableBass) {randomclefs.push("bass")};
+        let randomclef = randomclefs[chance.integer({min:0, max: randomclefs.length})];
+
+        return { randomNoteIndex: chance.integer({min:3, max:this.$data.possibleNotes.length}), randomclef: randomclef};
       }
     }
   }
