@@ -3,22 +3,25 @@
     <div class="centeralign" style="height: 80%;">
       <NotationRenderer v-show="showNotation" />
     </div>
-    <div class="centeralign" style="height: 20%;" id="bottomalign">
-      <button class="reroll" v-on:click='refreshlock("C")'>C</button>
-      <button class="reroll" v-on:click='refreshlock("D")'>D</button>
-      <button class="reroll" v-on:click='refreshlock("E")'>E</button>
-      <button class="reroll" v-on:click='refreshlock("F")'>F</button>
-      <button class="reroll" v-on:click='refreshlock("G")'>G</button>
-      <button class="reroll" v-on:click='refreshlock("A")'>A</button>
-      <button class="reroll" v-on:click='refreshlock("B")'>B</button>
-      <br>
-       <input type="checkbox" v-model="showNotation">
-       <input type="checkbox" v-model="playSynth">
+    <div style="height: 20%;" id="bottomalign">
+        <div class="button-grid">
+          <button class="reroll" v-on:click='refreshlock("C")'>C</button>
+          <button class="reroll" v-on:click='refreshlock("D")'>D</button>
+          <button class="reroll" v-on:click='refreshlock("E")'>E</button>
+          <button class="reroll" v-on:click='refreshlock("F")'>F</button>
+          <button class="reroll" v-on:click='refreshlock("G")'>G</button>
+          <button class="reroll" v-on:click='refreshlock("A")'>A</button>
+          <button class="reroll" v-on:click='refreshlock("B")'>B</button>
+        </div>
+        <br>
+        <input type="checkbox" v-model="showNotation">
+        <input type="checkbox" v-model="playSynth">
     </div>
   </div>
 </template>
 
 <script>
+  import Chance from "chance";
   import { Synth } from "tone";
   import NotationRenderer from './components/NotationRenderer.vue'
   import Vex from 'vexflow/src/index.js'
@@ -45,9 +48,7 @@
     },
 
     mounted () {
-      this.refresh();
-
-      [3,4,5,6,7,8,9].forEach(element => {
+      [3,4,5,6].forEach(element => {
         this.$data.possibleNotes.push({noteLetter:"C", octave:element});
         this.$data.possibleNotes.push({noteLetter:"D", octave:element});
         this.$data.possibleNotes.push({noteLetter:"E", octave:element});
@@ -56,6 +57,8 @@
         this.$data.possibleNotes.push({noteLetter:"A", octave:element});
         this.$data.possibleNotes.push({noteLetter:"B", octave:element});
       });
+      console.log(this.$data.possibleNotes)
+      this.refresh();
     },
 
     methods: {
@@ -67,22 +70,19 @@
             svg.parentNode.removeChild(svg);
         }
         
-        let randomchar = String.fromCharCode(65+Math.floor(Math.random() * 7)).toString()
-        this.$data.randomchars.push(randomchar)
-        var randomoctave = (Math.floor(Math.random() * 2) + 4).toString()
+        let randomObject = this.$data.possibleNotes[this.randomiser()];
+        this.$data.randomchars.push(randomObject.noteLetter);
 
-        let randomizer = this.$data.possibleNotes[Math.random() * this.$data.possibleNotes.length];
-        console.log(randomizer)
 
         if (this.$data.playSynth){
-          synth.triggerAttackRelease(randomchar + randomoctave, "4n");
+          synth.triggerAttackRelease(randomObject.noteLetter + randomObject.octave, "4n");
         }
         
         console.log(this.$data.randomchars)
 
         var notes = [
             // A quarter-note C.
-            new VF.StaveNote({clef: "treble", keys: [randomchar + "/" + randomoctave], duration: "q" }),
+            new VF.StaveNote({clef: "treble", keys: [randomObject.noteLetter + "/" + randomObject.octave], duration: "q" }),
         ];
 
         // Create an SVG renderer and attach it to the DIV element named "notation".
@@ -123,6 +123,11 @@
               this.$data.indexOfArray++
           }
       },
+
+      randomiser: function(e) {
+        var chance = new Chance();
+        return chance.integer({min:3, max:this.$data.possibleNotes.length});
+      }
     }
   }
 </script>
@@ -144,7 +149,8 @@
     border-top-right-radius: 25px;
 }
 .reroll {
-    display: flex;
+  justify-content: center;
+  display: flex;
     height: 20px;
 }
 #notation {
@@ -170,5 +176,10 @@ button{
     padding-right: 5%;
     background-color: white; 
     border: none;
+}
+.button-grid{
+  display: grid;
+  width: 100%;
+  grid-template-columns:  auto auto auto auto auto auto auto;
 }
 </style>
