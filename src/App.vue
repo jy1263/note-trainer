@@ -167,7 +167,7 @@
   }
 
   & #bottomalign{
-    background: black;
+    background: rgba(0, 0, 0, 0.5);
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     
@@ -200,6 +200,7 @@
 }
 
 html {
+  background: linear-gradient(to right, #ffafbd, #ffc3a0);
   display: block;
   border: 0px;
   height: 100%;
