@@ -165,6 +165,8 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
+@import './assets/fonts/font-loader.css';
+
 #wrapper{
   height: 100%;
 
@@ -203,6 +205,8 @@
       }
 
       & button{
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
         background:rgba(0, 0, 0, 0.5);
         border-radius: 25px;
         border: none;
@@ -218,13 +222,15 @@
     }
     & .options {
       width: 100%;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
       color: white;
       display: grid;
       grid-template-columns:  auto auto auto auto;
 
       & div{
-        justify-content: center;
         display: flex;
+        justify-content: center;
         align-content: center;
       }
     }
