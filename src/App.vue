@@ -240,6 +240,7 @@
     }
 
     & button{
+      align-content: center;
       text-align: center;
       line-height: 40px;
       font-family: 'Roboto', sans-serif;
@@ -248,11 +249,9 @@
       border-radius: 25px;
       border: none;
       color: white;
-      text-align: center;
       text-decoration: none;
       display: inline-block;
       font-size: 16px;
-      margin: 4px 2px;
       cursor: pointer;
     }
 
@@ -260,7 +259,12 @@
       @media @desktop {
         display: none;
       }
-
+      font-size: 25px;
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 40px;
       border-radius: 100%;
       height: 40px;
       width: 40px;

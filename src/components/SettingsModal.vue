@@ -66,6 +66,7 @@
         grid-template-columns:  auto auto auto auto;
     }
     & button{
+        height: 100%;
         text-align: center;
         line-height: 40px;
         font-family: 'Roboto', sans-serif;
