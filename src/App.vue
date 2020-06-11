@@ -14,6 +14,7 @@
           <button class="reroll" v-on:click='refreshlock("A")'>A</button>
           <button class="reroll" v-on:click='refreshlock("B")'>B</button>
         </div>
+        <div class="mobile-options">X</div>
         <div class="options">
           <div>Enable Note Renderer:<input type="checkbox" v-model="showNotation"></div>
           <div>Enable Synthesiser:<input type="checkbox" v-model="playSynth"></div>
@@ -166,6 +167,8 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
 @import './assets/fonts/font-loader.css';
+@mobile:    ~"only screen and (max-width: 800px)";
+@desktop:    ~"only screen and (min-width: 800px)";
 
 #wrapper{
   height: 100%;
@@ -221,13 +224,20 @@
         cursor: pointer;
       }
     }
+    & .mobile-options{
+      @media @desktop {
+        display: none;
+      }
+    }
     & .options {
+      @media @mobile {
+        display: none;
+      }
       width: 100%;
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
       color: white;
       display: grid;
-      gap: 5px;
       grid-template-columns:  auto auto auto auto;
 
       & div{
