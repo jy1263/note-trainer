@@ -1,7 +1,8 @@
 <template>
   <div id="wrapper">
-
-    <SettingsModal v-show="showSettings"/>
+    <transition name="settings-transition">
+      <SettingsModal :showSettings.sync="showSettings" v-show="showSettings" />
+    </transition>
 
     <div class="centeralign" style="height: 83%;">
       <NotationRenderer v-show="showNotation" />
@@ -17,7 +18,7 @@
           <button class="reroll" v-on:click='refreshlock("A")'>A</button>
           <button class="reroll" v-on:click='refreshlock("B")'>B</button>
         </div>
-        <button class="mobile-options">X</button>
+        <button class="mobile-options" v-on:click='showSettings = true'><span class="mdi mdi-cog"></span></button>
         <div class="options">
           <div>Enable Note Renderer:<input type="checkbox" v-model="showNotation"></div>
           <div>Enable Synthesiser:<input type="checkbox" v-model="playSynth"></div>
@@ -75,12 +76,19 @@
         this.$data.possibleNotes.push({noteLetter:"B", octave:element});
       });
 
-      this.$on('settingsClicked', function(e) {
-        let command = e.command
-        this.$data.command = e.value
+      this.$on('enableTreble', function(e) {
+        this.$data.enableTreble = e
+      });
+      this.$on('enableBass', function(e) {
+        this.$data.enableBass = e
+      });
+      this.$on('showNotation', function(e) {
+        this.$data.showNotation = e
+      });
+      this.$on('playSynth', function(e) {
+        this.$data.playSynth = e
       });
 
-      console.log(this.$data.possibleNotes)
       this.refresh();
     },
 
@@ -283,7 +291,7 @@ html {
   background-size: 400% 400%;
   -webkit-animation: rainbowFrames 20s ease infinite;
   -moz-animation: rainbowFrames 20s ease infinite;
-  animation: rainbowFrames 209s ease infinite;
+  animation: rainbowFrames 20s ease infinite;
   /*background: linear-gradient(to right, #ffafbd, #ffc3a0);*/
   display: block;
   border: 0px;
@@ -312,5 +320,13 @@ body {
     0%{background-position:0% 50%}
     50%{background-position:100% 50%}
     100%{background-position:0% 50%}
+}
+
+.settings-transition-enter-active, .settings-transition-leave-active {
+  transition: all .5s ease-in-out;
+}
+
+.settings-transition-enter, .settings-transition-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  transform: translateY(100%);
 }
 </style>
