@@ -14,12 +14,12 @@
           <button class="reroll" v-on:click='refreshlock("A")'>A</button>
           <button class="reroll" v-on:click='refreshlock("B")'>B</button>
         </div>
-        <span class="options">
-          Enable Note Renderer:<input type="checkbox" v-model="showNotation">
-          Enable Synthesiser:<input type="checkbox" v-model="playSynth">
-          Enable Treble Clef:<input type="checkbox" v-model="enableTreble">
-          Enable Bass Clef:<input type="checkbox" v-model="enableBass">
-        </span>
+        <div class="options">
+          <div>Enable Note Renderer:<input type="checkbox" v-model="showNotation"></div>
+          <div>Enable Synthesiser:<input type="checkbox" v-model="playSynth"></div>
+          <div>Enable Treble Clef:<input type="checkbox" v-model="enableTreble"></div>
+          <div>Enable Bass Clef:<input type="checkbox" v-model="enableBass"></div>
+        </div>
     </div>
   </div>
 </template>
@@ -217,7 +217,16 @@
       }
     }
     & .options {
+      width: 100%;
       color: white;
+      display: grid;
+      grid-template-columns:  auto auto auto auto;
+
+      & div{
+        justify-content: center;
+        display: flex;
+        align-content: center;
+      }
     }
   }
 }
@@ -227,7 +236,7 @@ html {
   background-size: 400% 400%;
   -webkit-animation: rainbowFrames 20s ease infinite;
   -moz-animation: rainbowFrames 20s ease infinite;
-  animation: rainbowFrames 20s ease infinite;
+  animation: rainbowFrames 209s ease infinite;
   /*background: linear-gradient(to right, #ffafbd, #ffc3a0);*/
   display: block;
   border: 0px;
