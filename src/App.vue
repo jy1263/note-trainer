@@ -1,5 +1,6 @@
 <template>
   <div id="wrapper">
+    <PWASupport />
     <transition name="settings-transition">
       <SettingsModal :showSettings.sync="showSettings" v-show="showSettings" />
     </transition>
@@ -33,6 +34,7 @@
   import '@mdi/font/css/materialdesignicons.css'
   import Chance from "chance";
   import { Synth } from "tone";
+  import PWASupport from './components/PWASupport.vue'
   import NotationRenderer from './components/NotationRenderer.vue'
   import SettingsModal from './components/SettingsModal.vue'
   import Vex from 'vexflow/src/index.js'
@@ -42,6 +44,7 @@
     name: 'App',
 
     components: {
+      PWASupport,
       NotationRenderer,
       SettingsModal
     },
