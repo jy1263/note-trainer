@@ -205,13 +205,14 @@
       }
 
       & button{
+        text-align: center;
+        line-height: 40px;
         font-family: 'Roboto', sans-serif;
         font-weight: 300;
         background:rgba(0, 0, 0, 0.5);
         border-radius: 25px;
         border: none;
         color: white;
-        padding-top: 6%;
         text-align: center;
         text-decoration: none;
         display: inline-block;
@@ -226,6 +227,7 @@
       font-weight: 300;
       color: white;
       display: grid;
+      gap: 5px;
       grid-template-columns:  auto auto auto auto;
 
       & div{
