@@ -17,14 +17,6 @@
           <button class="reroll" v-on:click='refreshlock("A")'>A</button>
           <button class="reroll" v-on:click='refreshlock("B")'>B</button>
         </div>
-<<<<<<< Updated upstream
-        <span class="options">
-          Enable Note Renderer:<input type="checkbox" v-model="showNotation">
-          Enable Synthesiser:<input type="checkbox" v-model="playSynth">
-          Enable Treble Clef:<input type="checkbox" v-model="enableTreble">
-          Enable Bass Clef:<input type="checkbox" v-model="enableBass">
-        </span>
-=======
 
         <button class="mobile-options" v-on:click='showSettings = true'><span class="mdi mdi-cog"></span></button>
 
@@ -34,7 +26,6 @@
           <div>Enable Treble Clef:<input type="checkbox" v-model="enableTreble"></div>
           <div>Enable Bass Clef:<input type="checkbox" v-model="enableBass"></div>
         </div>
->>>>>>> Stashed changes
     </div>
   </div>
 </template>
@@ -221,22 +212,11 @@
         display: flex;
         height: 20px;
       }
-<<<<<<< Updated upstream
-
-      & button{
-        font-family: monospace;
-        display:block;
-        padding-left: 5%;
-        padding-right: 5%;
-        background-color: white; 
-        border: none;
-=======
     }
 
     & .mobile-options{
       @media @desktop {
         display: none;
->>>>>>> Stashed changes
       }
 
       border-radius: 100%;
