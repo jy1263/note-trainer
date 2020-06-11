@@ -33,6 +33,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+<<<<<<< Updated upstream
 }
 #bottomalign{
     background: black;
@@ -53,6 +54,28 @@
 html {
     display: block;
     border: 0px;
+=======
+
+    & #notation {
+        width: 20em !important;
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        justify-content: center;
+        
+        & svg{
+            z-index: -100;
+            transform: scale(2, 2);
+            & rect {
+                transform: translateY(8vh);
+            }
+            & path {
+                transform: translateY(8vh);
+                stroke: black;
+            }
+        }
+    }
+>>>>>>> Stashed changes
 }
 body {
     margin: 0px;

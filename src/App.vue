@@ -1,9 +1,12 @@
 <template>
   <div id="wrapper">
-    <div class="centeralign" style="height: 80%;">
+
+    <SettingsModal v-show="showSettings"/>
+
+    <div class="centeralign" style="height: 83%;">
       <NotationRenderer v-show="showNotation" />
     </div>
-    <div class="centeralign" style="height: 20%;" id="bottomalign">
+    <div class="centeralign" style="height: 17%;" id="bottomalign">
       <div class="break" />
         <div class="button-grid">
           <button class="reroll" v-on:click='refreshlock("C")'>C</button>
@@ -14,20 +17,34 @@
           <button class="reroll" v-on:click='refreshlock("A")'>A</button>
           <button class="reroll" v-on:click='refreshlock("B")'>B</button>
         </div>
+<<<<<<< Updated upstream
         <span class="options">
           Enable Note Renderer:<input type="checkbox" v-model="showNotation">
           Enable Synthesiser:<input type="checkbox" v-model="playSynth">
           Enable Treble Clef:<input type="checkbox" v-model="enableTreble">
           Enable Bass Clef:<input type="checkbox" v-model="enableBass">
         </span>
+=======
+
+        <button class="mobile-options" v-on:click='showSettings = true'><span class="mdi mdi-cog"></span></button>
+
+        <div class="options">
+          <div>Enable Note Renderer:<input type="checkbox" v-model="showNotation"></div>
+          <div>Enable Synthesiser:<input type="checkbox" v-model="playSynth"></div>
+          <div>Enable Treble Clef:<input type="checkbox" v-model="enableTreble"></div>
+          <div>Enable Bass Clef:<input type="checkbox" v-model="enableBass"></div>
+        </div>
+>>>>>>> Stashed changes
     </div>
   </div>
 </template>
 
 <script>
+  import '@mdi/font/css/materialdesignicons.css'
   import Chance from "chance";
   import { Synth } from "tone";
   import NotationRenderer from './components/NotationRenderer.vue'
+  import SettingsModal from './components/SettingsModal.vue'
   import Vex from 'vexflow/src/index.js'
   let VF = Vex.Flow;
 
@@ -35,7 +52,8 @@
     name: 'App',
 
     components: {
-      NotationRenderer
+      NotationRenderer,
+      SettingsModal
     },
 
     props: {
@@ -51,7 +69,9 @@
         enableTreble: true,
         enableBass: true,
         showNotation: true,
-        playSynth: true
+        playSynth: true,
+
+        showSettings: false
       }
     },
 
@@ -65,6 +85,12 @@
         this.$data.possibleNotes.push({noteLetter:"A", octave:element});
         this.$data.possibleNotes.push({noteLetter:"B", octave:element});
       });
+
+      this.$on('settingsClicked', function(e) {
+        let command = e.command
+        this.$data.command = e.value
+      });
+
       console.log(this.$data.possibleNotes)
       this.refresh();
     },
@@ -161,18 +187,27 @@
     align-items: center;
   }
 
-  & #notation {
-      width: 20em !important;
-      display: flex;
-      align-items: center;
-      justify-items: center;
-      justify-content: center;
-  }
-
   & #bottomalign{
     background: black;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
+
+    & button{
+      text-align: center;
+      line-height: 40px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      background:rgba(0, 0, 0, 0.5);
+      border-radius: 25px;
+      border: none;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
     
     & .button-grid{
       margin: 2px;
@@ -186,6 +221,7 @@
         display: flex;
         height: 20px;
       }
+<<<<<<< Updated upstream
 
       & button{
         font-family: monospace;
@@ -194,8 +230,20 @@
         padding-right: 5%;
         background-color: white; 
         border: none;
-      }
+=======
     }
+
+    & .mobile-options{
+      @media @desktop {
+        display: none;
+>>>>>>> Stashed changes
+      }
+
+      border-radius: 100%;
+      height: 40px;
+      width: 40px;
+    }
+
     & .options {
       color: white;
     }
