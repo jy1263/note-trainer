@@ -17,7 +17,7 @@
           <button class="reroll" v-on:click='refreshlock("A")'>A</button>
           <button class="reroll" v-on:click='refreshlock("B")'>B</button>
         </div>
-        <div class="mobile-options">X</div>
+        <button class="mobile-options">X</button>
         <div class="options">
           <div>Enable Note Renderer:<input type="checkbox" v-model="showNotation"></div>
           <div>Enable Synthesiser:<input type="checkbox" v-model="playSynth"></div>
@@ -231,23 +231,23 @@
       }
     }
 
-      & button{
-        text-align: center;
-        line-height: 40px;
-        font-family: 'Roboto', sans-serif;
-        font-weight: 300;
-        background:rgba(0, 0, 0, 0.5);
-        border-radius: 25px;
-        border: none;
-        color: white;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-      }
+    & button{
+      text-align: center;
+      line-height: 40px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      background:rgba(0, 0, 0, 0.5);
+      border-radius: 25px;
+      border: none;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
     }
+
     & .mobile-options{
       @media @desktop {
         display: none;
