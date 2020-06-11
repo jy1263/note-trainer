@@ -29,6 +29,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
 .centeralign {
+    flex-wrap: wrap;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -45,10 +46,10 @@
             z-index: -100;
             transform: scale(2, 2);
             & rect {
-                transform: translateY(8vh);
+                transform: translateY(10.5vh);
             }
             & path {
-                transform: translateY(8vh);
+                transform: translateY(10.5vh);
                 stroke: black;
             }
         }
@@ -56,13 +57,5 @@
 }
 body {
     margin: 0px;
-}
-button{
-    font-family: monospace;
-    display:block;
-    padding-left: 5%;
-    padding-right: 5%;
-    background-color: white; 
-    border: none;
 }
 </style>
