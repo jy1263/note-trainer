@@ -46,10 +46,10 @@
             z-index: -100;
             transform: scale(2, 2);
             & rect {
-                transform: translateY(25%);
+                transform: translateY(10.5vh);
             }
             & path {
-                transform: translateY(25%);
+                transform: translateY(10.5vh);
                 stroke: black;
             }
         }
