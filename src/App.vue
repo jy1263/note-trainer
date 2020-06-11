@@ -211,7 +211,7 @@
         border-radius: 25px;
         border: none;
         color: white;
-        padding-top: 10px;
+        padding-top: 6%;
         text-align: center;
         text-decoration: none;
         display: inline-block;
