@@ -14,6 +14,7 @@
     "tone": "^13.8.25",
     "vexflow": "^3.0.9",
     "vue": "^2.6.11",
+    "vue-meta": "^2.4.0",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
