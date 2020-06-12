@@ -8,7 +8,7 @@
 
     metaInfo: {
       link:[
-        {rel: "apple-touch-icon", href: "/assets/logo.png"}
+        {rel: "apple-touch-icon", href: "./assets/apple-touch-icon.png"}
       ],
       title: 'Note Trainer',
       meta: [
