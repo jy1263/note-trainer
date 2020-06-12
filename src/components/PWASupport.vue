@@ -7,6 +7,9 @@
     name: 'PWASupport',
 
     metaInfo: {
+      link:[
+        {rel: "apple-touch-icon", href: "/assets/logo.png"}
+      ],
       title: 'Note Trainer',
       meta: [
         { name: "apple-mobile-web-app-capable", content: "yes"},
