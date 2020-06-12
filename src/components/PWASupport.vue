@@ -1,9 +1,4 @@
 <template>
-    <head>
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="apple-mobile-web-app-title" content="Note Trainer">        
-    </head>
 </template>
 
 <script>
@@ -12,10 +7,13 @@
     name: 'PWASupport',
 
     metaInfo: {
-      // if no subcomponents specify a metaInfo.title, this title will be used
-      title: 'Default Title',
-      // all titles will be injected into this template
-      titleTemplate: '%s | My Awesome Webapp'
+      title: 'Note Trainer',
+      meta: [
+        { name: "apple-mobile-web-app-capable", content: "yes"},
+        { name: "apple-mobile-web-app-status-bar-style", content: "black"},
+        { name: "apple-mobile-web-app-title", content: "Note Trainer" }
+      ]
+
     },
 
     props: {
