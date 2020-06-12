@@ -165,6 +165,10 @@
           ... this.$data.enableBass ? ["bass"] : [],
         ];
 
+        if (randomclefs.length == 0) {
+          randomclefs = ["treble", "bass"]
+        }
+
         let randomclef = randomclefs[chance.integer({min:0, max: randomclefs.length - 1})]
 
         let minfloor;
