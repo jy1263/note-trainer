@@ -1,5 +1,9 @@
 <template>
   <div id="wrapper">
+
+    <button v-on:click="showHelp = true" class="wrapper-button"><span class="mdi mdi-help-circle" /></button>
+    
+    <Help v-if="showHelp"/>
     <PWASupport />
     <transition name="settings-transition">
       <SettingsModal :showSettings.sync="showSettings" v-show="showSettings" />
@@ -37,6 +41,7 @@
   import PWASupport from './components/PWASupport.vue'
   import NotationRenderer from './components/NotationRenderer.vue'
   import SettingsModal from './components/SettingsModal.vue'
+  import Help from './components/Help.vue'
   import Vex from 'vexflow/src/index.js'
   let VF = Vex.Flow;
 
@@ -46,7 +51,8 @@
     components: {
       PWASupport,
       NotationRenderer,
-      SettingsModal
+      SettingsModal,
+      Help
     },
 
     props: {
@@ -64,7 +70,8 @@
         showNotation: true,
         playSynth: true,
 
-        showSettings: false
+        showSettings: false,
+        showHelp: false
       }
     },
 
@@ -202,6 +209,28 @@
 #wrapper{
   height: 100%;
 
+  & .wrapper-button{
+    top: 20px;
+    left: 20px;
+    position: fixed;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    align-content: center;
+    text-align: center;
+    line-height: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    background:rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
   & .centeralign {
     flex-wrap: wrap;
     width: 100%;
@@ -218,6 +247,7 @@
     & button{
       text-align: center;
       line-height: 40px;
+      height: 40px;
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
       background:rgba(0, 0, 0, 0.5);
