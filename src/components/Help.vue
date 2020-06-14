@@ -10,11 +10,11 @@
     name: 'Help',
 
     props: {
+        type: {default() { return 'text'; }},
+        value: {}                              // you can also add more restrictions here
     },
-
     data: function () {
         return {
-            
         }
     },
 
@@ -22,7 +22,10 @@
     },
 
     methods: {
-    },
+        updateValue: function (value) {
+            this.$emit('input', value);
+        }
+    }
   }
 </script>
 
