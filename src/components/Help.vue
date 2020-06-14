@@ -81,7 +81,7 @@
         border: none;
         color: white;
         text-decoration: none;
-        display: inline-block;
+        display: flex;
         font-size: 16px;
         cursor: pointer;
     }
