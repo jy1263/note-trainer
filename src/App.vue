@@ -211,6 +211,7 @@
   height: 100%;
 
   & .wrapper-button{
+    justify-content: center;
     top: 20px;
     left: 20px;
     position: fixed;

@@ -64,6 +64,7 @@
     }
     
     & button {
+        align-content: center;
         align-self: flex-end;
         transform: translateY(-3px);
         position: fixed;
