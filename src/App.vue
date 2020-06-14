@@ -236,7 +236,7 @@
       margin: 2px;
       display: grid;
       width: 100%;
-      grid-template-columns:  auto auto auto auto auto auto auto;
+      grid-auto-flow: column; 
 
       & .reroll {
         margin: 1%;
@@ -283,7 +283,7 @@
       font-weight: 300;
       color: white;
       display: grid;
-      grid-template-columns:  auto auto auto auto;
+      grid-auto-flow: column; 
 
       & div{
         display: flex;
