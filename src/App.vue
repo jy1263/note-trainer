@@ -2,8 +2,9 @@
   <div id="wrapper">
 
     <button v-on:click="showHelp = true" class="wrapper-button"><span class="mdi mdi-help-circle" /></button>
-    
-    <Help v-if="showHelp"/>
+    <transition name="fade"> 
+    <Help v-if="showHelp" v-model="showHelp" />
+    </transition>
     <PWASupport />
     <transition name="settings-transition">
       <SettingsModal :showSettings.sync="showSettings" v-show="showSettings" />
@@ -366,5 +367,12 @@ body {
 
 .settings-transition-enter, .settings-transition-leave-to /* .fade-leave-active below version 2.1.8 */ {
   transform: translateY(100%);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
