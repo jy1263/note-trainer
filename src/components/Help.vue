@@ -2,7 +2,7 @@
 <transition name="fade">
     <div id="help">
         <div class="modal">
-            Click on the note button ("C", "D", etc.) that corresponds with the note displayed.
+            <span class="help-text"> Click on the note button ("C", "D", etc.) that corresponds with the note displayed.</span>
             <button :type="type" :value="value" @click="$emit('input', false)"><span class="mdi mdi-arrow-left-bold" /></button>
         </div>
     </div>
@@ -47,8 +47,8 @@
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.5);
-    height: 50%;
-    width: 50%;
+    height: 30%;
+    width: 80%;
     border-radius: 25px;
     line-height: 40px;
     font-family: 'Roboto', sans-serif;
@@ -56,6 +56,12 @@
     background:rgba(0, 0, 0, 0.5);
     border: none;
     color: white;
+
+    & .help-text{
+        text-align: center;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
     
     & button {
         align-self: flex-end;
